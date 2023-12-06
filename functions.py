@@ -69,12 +69,6 @@ def generate_questions(input_text: str, provider='openai'):
             messages=messages,
             temperature=0.2,
         )
-    # elif provider == 'azure':
-    #     completion = openai.ChatCompletion.create(
-    #         engine='gpt-4-32k',
-    #         messages=messages,
-    #         temperature=0.2,
-    #     )
     else:
         raise Exception(f'[ERROR] Unidentified ChatGPT Provider: {provider}')
     response = completion['choices'][0]['message']['content']
@@ -122,12 +116,7 @@ def summarize(question: str, documents: List[str], provider='openai'):
                     messages=messages,
                     temperature=0.2,
                 )
-            # elif provider == 'azure':
-            #     completion = openai.ChatCompletion.create(
-            #         engine='gpt-4-32k',
-            #         messages=messages,
-            #         temperature=0.2,
-            #     )
+
         except Exception as e:
             print(f'[INFO] Exception: {e}. Retry in five seconds.')
             time.sleep(10)
