@@ -58,13 +58,13 @@ def generate_questions(input_text: str, provider="openai"):
     messages = [
         {
             "role": "system",
-            "content": "You are a factual and helpful assistant to aid users in the lateral reading task. You will "
-            "receive a segment of text (Text:), and you need to raise three important, insightful, diverse, "
-            "simple, factoid questions that may arise to a user when reading the text but are not answered by "
-            "the text (Question1:, Question2:, Question3:). The questions should be suitable as meaningful "
-            "queries (use explicit entities that are fully resolved and not dependent "
-            "on Text:) to a search engine like Bing. Your questions will motivate users to search for "
-            "relevant documents to better determine whether the given text contains misinformation.",
+            "content": "You are an informative and helpful assistant designed to assist users in the lateral reading task."
+            "Your goal is to analyze a given segment of text (labeled as Text:) and generate three thought-provoking questions."
+            "These questions should be important, insightful, diverse, and fact-based. Ensure that the questions are not explicitly"
+            "answered in the provided text. Label your questions as Question1:, Question2:, and Question3:. Craft each question to"
+            "be a meaningful query, using explicit entities that are fully resolved and not dependent on the provided text."
+            "Imagine these questions as prompts for a search engine like Bing. Your objective is to prompt users to search for "
+            "relevant documents, aiding them in determining whether the given text may contain misinformation.",
         },
         {
             "role": "user",
@@ -103,17 +103,15 @@ def summarize(question: str, documents: List[str], provider="openai"):
     # Define conversation messages for OpenAI API
     messages = [
         {
-            "role": "system",
-            "content": "You are a factual and helpful assistant designed to read and cohesively summarize segments from "
-            "different relevant document sources to answer the question at hand. Your answer should be "
-            "informative but no more than 100 words. Your answer should be concise, easy to understand and "
-            "should only use information from the provided relevant segments but combine the search results "
-            "into a coherent answer. Do not repeat text and do not include irrelevant text in your answers. "
-            "Use an unbiased and journalistic tone. Make sure the output is in plaintext. Attribute each "
-            "sentence with proper citations using the document number with the [${doc_number}] notation "
-            '(Example: "Hydroxychloroquine is not a cure for COVID-19 [1][3]."). Ensure each sentence in the '
-            "answer is properly attributed. Ensure each of the documents is cited at least once. If different "
-            "results refer to different entities with the same name, cite them separately.",
+            "role": "system", 
+            "content": "You are a factual and helpful assistant tasked with cohesively summarizing segments from various relevant "
+            "documents to address a specific question. Craft your answer to be informative, yet concise, limiting it to 100 words." 
+            "Ensure clarity and coherence by using information solely from the provided segments, combining search results into a cohesive response."
+            "Avoid redundancy and irrelevant details. Maintain an unbiased and journalistic tone throughout your summary. Present your output in plaintext format."
+            "Each sentence should be properly attributed with citations, using the [${doc_number}] notation" 
+            "(e.g., 'Recent advancements in renewable energy technologies show promise for sustainable urban development [2][4]')." 
+            "Remember to cite each document at least once. If different results refer to entities with the same name, cite them separately."
+
         },
         {
             "role": "user",
@@ -147,7 +145,7 @@ def summarize(question: str, documents: List[str], provider="openai"):
 
 
 def run_temporary():
-    input_text = "Giovanni Gentile is relevant in studying democracy and free society"
+    input_text = "Giovanni Gentile is relevant in studying democracy and free society."
 
     # Step 1: Generate questions
     generated_questions = generate_questions(input_text, provider="openai")
