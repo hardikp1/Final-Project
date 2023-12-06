@@ -1,2 +1,0 @@
-BING_API_KEY= '0117b460c9ff41febac31187aaa972de'
-
