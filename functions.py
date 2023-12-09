@@ -73,12 +73,14 @@ def generate_questions(input_text: str, provider="openai"):
             f"self-sufficient (Do not have pronouns or attributes relying on the text, "
             f"they should be fully resolved and make complete sense independently).",
         },
+    
     ]
     if provider == "openai":
         completion = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=messages,
             temperature=0.2,
+            max_tokens = 3854
         )
     else:
         raise Exception(f"[ERROR] Unidentified ChatGPT Provider: {provider}")
@@ -145,7 +147,7 @@ def summarize(question: str, documents: List[str], provider="openai"):
 
 
 def run_temporary():
-    input_text = "Giovanni Gentile is relevant in studying democracy and free society."
+    input_text = "COVID-19 originated in the United States of America."
 
     # Step 1: Generate questions
     generated_questions = generate_questions(input_text, provider="openai")
